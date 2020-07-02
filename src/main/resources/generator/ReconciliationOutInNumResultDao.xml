@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vue.demo.dao.ReconciliationOutInNumResultDao">
+    <resultMap id="BaseResultMap" type="com.vue.demo.entity.ReconciliationOutInNumResult">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="type_id" jdbcType="BIGINT" property="typeId"/>
+        <result column="result_type" jdbcType="TINYINT" property="resultType"/>
+        <result column="batch_no" jdbcType="VARCHAR" property="batchNo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_person" jdbcType="VARCHAR" property="createPerson"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_person" jdbcType="VARCHAR" property="updatePerson"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, type_id, result_type, batch_no, create_time, create_person, update_time, update_person
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from reconciliation_out_in_num_result
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from reconciliation_out_in_num_result
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.vue.demo.entity.ReconciliationOutInNumResult"
+            useGeneratedKeys="true">
+        insert into reconciliation_out_in_num_result (type_id, result_type, batch_no,
+                                                      create_time, create_person, update_time,
+                                                      update_person)
+        values (#{typeId,jdbcType=BIGINT}, #{resultType,jdbcType=TINYINT}, #{batchNo,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+                #{updatePerson,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.vue.demo.entity.ReconciliationOutInNumResult" useGeneratedKeys="true">
+        insert into reconciliation_out_in_num_result
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="resultType != null">
+                result_type,
+            </if>
+            <if test="batchNo != null">
+                batch_no,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createPerson != null">
+                create_person,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updatePerson != null">
+                update_person,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="typeId != null">
+                #{typeId,jdbcType=BIGINT},
+            </if>
+            <if test="resultType != null">
+                #{resultType,jdbcType=TINYINT},
+            </if>
+            <if test="batchNo != null">
+                #{batchNo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createPerson != null">
+                #{createPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatePerson != null">
+                #{updatePerson,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.vue.demo.entity.ReconciliationOutInNumResult">
+        update reconciliation_out_in_num_result
+        <set>
+            <if test="typeId != null">
+                type_id = #{typeId,jdbcType=BIGINT},
+            </if>
+            <if test="resultType != null">
+                result_type = #{resultType,jdbcType=TINYINT},
+            </if>
+            <if test="batchNo != null">
+                batch_no = #{batchNo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createPerson != null">
+                create_person = #{createPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatePerson != null">
+                update_person = #{updatePerson,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.vue.demo.entity.ReconciliationOutInNumResult">
+        update reconciliation_out_in_num_result
+        set type_id       = #{typeId,jdbcType=BIGINT},
+            result_type   = #{resultType,jdbcType=TINYINT},
+            batch_no      = #{batchNo,jdbcType=VARCHAR},
+            create_time   = #{createTime,jdbcType=TIMESTAMP},
+            create_person = #{createPerson,jdbcType=VARCHAR},
+            update_time   = #{updateTime,jdbcType=TIMESTAMP},
+            update_person = #{updatePerson,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="findAbnormalDataByDateAfter" parameterType="java.time.LocalDate" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from reconciliation_out_in_num_result
+        where create_time > #{deadline};
+    </select>
+</mapper>

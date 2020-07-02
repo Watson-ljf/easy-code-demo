@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vue.demo.dao.InboundNoticeDao">
+  <resultMap id="BaseResultMap" type="com.vue.demo.entity.InboundNotice">
+    <id column="inbound_notice_id" jdbcType="BIGINT" property="id" />
+    <result column="inbound_notice_inbound_notice_no" jdbcType="VARCHAR" property="inboundNoticeNo" />
+    <result column="inbound_notice_fulfil_id" jdbcType="TINYINT" property="fulfilId" />
+    <result column="inbound_notice_uuid" jdbcType="BIGINT" property="uuid" />
+    <result column="inbound_notice_user_id" jdbcType="BIGINT" property="userId" />
+    <result column="inbound_notice_origin_bill_no" jdbcType="VARCHAR" property="originBillNo" />
+    <result column="inbound_notice_origin_bill_type" jdbcType="TINYINT" property="originBillType" />
+    <result column="inbound_notice_origin_bill_channel" jdbcType="INTEGER" property="originBillChannel" />
+    <result column="inbound_notice_warehouse_id" jdbcType="BIGINT" property="warehouseId" />
+    <result column="inbound_notice_warehouse_code" jdbcType="VARCHAR" property="warehouseCode" />
+    <result column="inbound_notice_warehouse_name" jdbcType="VARCHAR" property="warehouseName" />
+    <result column="inbound_notice_outbound_warehouse_id" jdbcType="BIGINT" property="outboundWarehouseId" />
+    <result column="inbound_notice_outbound_warehouse_code" jdbcType="VARCHAR" property="outboundWarehouseCode" />
+    <result column="inbound_notice_outbound_warehouse_name" jdbcType="VARCHAR" property="outboundWarehouseName" />
+    <result column="inbound_notice_status" jdbcType="TINYINT" property="status" />
+    <result column="inbound_notice_create_flow_status" jdbcType="TINYINT" property="createFlowStatus" />
+    <result column="inbound_notice_flow_template_id" jdbcType="VARCHAR" property="flowTemplateId" />
+    <result column="inbound_notice_flow_template_name" jdbcType="VARCHAR" property="flowTemplateName" />
+    <result column="inbound_notice_flow_instance_id" jdbcType="VARCHAR" property="flowInstanceId" />
+    <result column="inbound_notice_need_inbound_num" jdbcType="INTEGER" property="needInboundNum" />
+    <result column="inbound_notice_already_inbound_num" jdbcType="INTEGER" property="alreadyInboundNum" />
+    <result column="inbound_notice_confirm_inbound_num" jdbcType="INTEGER" property="confirmInboundNum" />
+    <result column="inbound_notice_urgent_level" jdbcType="TINYINT" property="urgentLevel" />
+    <result column="inbound_notice_notice_time" jdbcType="TIMESTAMP" property="noticeTime" />
+    <result column="inbound_notice_last_inbound_time" jdbcType="TIMESTAMP" property="lastInboundTime" />
+    <result column="inbound_notice_origin_bill_time" jdbcType="TIMESTAMP" property="originBillTime" />
+    <result column="inbound_notice_fulfil_time" jdbcType="TIMESTAMP" property="fulfilTime" />
+    <result column="inbound_notice_idempotent_no" jdbcType="VARCHAR" property="idempotentNo" />
+    <result column="inbound_notice_logic_version" jdbcType="INTEGER" property="logicVersion" />
+    <result column="inbound_notice_is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="inbound_notice_create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="inbound_notice_create_person" jdbcType="VARCHAR" property="createPerson" />
+    <result column="inbound_notice_update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="inbound_notice_update_person" jdbcType="VARCHAR" property="updatePerson" />
+    <result column="inbound_notice_wms_type" jdbcType="TINYINT" property="wmsType" />
+    <result column="inbound_notice_origin_bill_id" jdbcType="BIGINT" property="originBillId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    inbound_notice.id as inbound_notice_id, inbound_notice.inbound_notice_no as inbound_notice_inbound_notice_no, 
+    inbound_notice.fulfil_id as inbound_notice_fulfil_id, inbound_notice.uuid as inbound_notice_uuid, 
+    inbound_notice.user_id as inbound_notice_user_id, inbound_notice.origin_bill_no as inbound_notice_origin_bill_no, 
+    inbound_notice.origin_bill_type as inbound_notice_origin_bill_type, inbound_notice.origin_bill_channel as inbound_notice_origin_bill_channel, 
+    inbound_notice.warehouse_id as inbound_notice_warehouse_id, inbound_notice.warehouse_code as inbound_notice_warehouse_code, 
+    inbound_notice.warehouse_name as inbound_notice_warehouse_name, inbound_notice.outbound_warehouse_id as inbound_notice_outbound_warehouse_id, 
+    inbound_notice.outbound_warehouse_code as inbound_notice_outbound_warehouse_code, 
+    inbound_notice.outbound_warehouse_name as inbound_notice_outbound_warehouse_name, 
+    inbound_notice.`status` as `inbound_notice_status`, inbound_notice.create_flow_status as inbound_notice_create_flow_status, 
+    inbound_notice.flow_template_id as inbound_notice_flow_template_id, inbound_notice.flow_template_name as inbound_notice_flow_template_name, 
+    inbound_notice.flow_instance_id as inbound_notice_flow_instance_id, inbound_notice.need_inbound_num as inbound_notice_need_inbound_num, 
+    inbound_notice.already_inbound_num as inbound_notice_already_inbound_num, inbound_notice.confirm_inbound_num as inbound_notice_confirm_inbound_num, 
+    inbound_notice.urgent_level as inbound_notice_urgent_level, inbound_notice.notice_time as inbound_notice_notice_time, 
+    inbound_notice.last_inbound_time as inbound_notice_last_inbound_time, inbound_notice.origin_bill_time as inbound_notice_origin_bill_time, 
+    inbound_notice.fulfil_time as inbound_notice_fulfil_time, inbound_notice.idempotent_no as inbound_notice_idempotent_no, 
+    inbound_notice.logic_version as inbound_notice_logic_version, inbound_notice.is_deleted as inbound_notice_is_deleted, 
+    inbound_notice.create_time as inbound_notice_create_time, inbound_notice.create_person as inbound_notice_create_person, 
+    inbound_notice.update_time as inbound_notice_update_time, inbound_notice.update_person as inbound_notice_update_person, 
+    inbound_notice.wms_type as inbound_notice_wms_type, inbound_notice.origin_bill_id as inbound_notice_origin_bill_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inbound_notice inbound_notice
+    where inbound_notice.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from inbound_notice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.vue.demo.entity.InboundNotice" useGeneratedKeys="true">
+    insert into inbound_notice (inbound_notice_no, fulfil_id, uuid, 
+      user_id, origin_bill_no, origin_bill_type, 
+      origin_bill_channel, warehouse_id, warehouse_code, 
+      warehouse_name, outbound_warehouse_id, outbound_warehouse_code, 
+      outbound_warehouse_name, `status`, create_flow_status, 
+      flow_template_id, flow_template_name, flow_instance_id, 
+      need_inbound_num, already_inbound_num, confirm_inbound_num, 
+      urgent_level, notice_time, last_inbound_time, 
+      origin_bill_time, fulfil_time, idempotent_no, 
+      logic_version, is_deleted, create_time, 
+      create_person, update_time, update_person, 
+      wms_type, origin_bill_id)
+    values (#{inboundNoticeNo,jdbcType=VARCHAR}, #{fulfilId,jdbcType=TINYINT}, #{uuid,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{originBillNo,jdbcType=VARCHAR}, #{originBillType,jdbcType=TINYINT}, 
+      #{originBillChannel,jdbcType=INTEGER}, #{warehouseId,jdbcType=BIGINT}, #{warehouseCode,jdbcType=VARCHAR}, 
+      #{warehouseName,jdbcType=VARCHAR}, #{outboundWarehouseId,jdbcType=BIGINT}, #{outboundWarehouseCode,jdbcType=VARCHAR}, 
+      #{outboundWarehouseName,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createFlowStatus,jdbcType=TINYINT}, 
+      #{flowTemplateId,jdbcType=VARCHAR}, #{flowTemplateName,jdbcType=VARCHAR}, #{flowInstanceId,jdbcType=VARCHAR}, 
+      #{needInboundNum,jdbcType=INTEGER}, #{alreadyInboundNum,jdbcType=INTEGER}, #{confirmInboundNum,jdbcType=INTEGER}, 
+      #{urgentLevel,jdbcType=TINYINT}, #{noticeTime,jdbcType=TIMESTAMP}, #{lastInboundTime,jdbcType=TIMESTAMP}, 
+      #{originBillTime,jdbcType=TIMESTAMP}, #{fulfilTime,jdbcType=TIMESTAMP}, #{idempotentNo,jdbcType=VARCHAR}, 
+      #{logicVersion,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{wmsType,jdbcType=TINYINT}, #{originBillId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.vue.demo.entity.InboundNotice" useGeneratedKeys="true">
+    insert into inbound_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="inboundNoticeNo != null">
+        inbound_notice_no,
+      </if>
+      <if test="fulfilId != null">
+        fulfil_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="originBillNo != null">
+        origin_bill_no,
+      </if>
+      <if test="originBillType != null">
+        origin_bill_type,
+      </if>
+      <if test="originBillChannel != null">
+        origin_bill_channel,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code,
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name,
+      </if>
+      <if test="outboundWarehouseId != null">
+        outbound_warehouse_id,
+      </if>
+      <if test="outboundWarehouseCode != null">
+        outbound_warehouse_code,
+      </if>
+      <if test="outboundWarehouseName != null">
+        outbound_warehouse_name,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createFlowStatus != null">
+        create_flow_status,
+      </if>
+      <if test="flowTemplateId != null">
+        flow_template_id,
+      </if>
+      <if test="flowTemplateName != null">
+        flow_template_name,
+      </if>
+      <if test="flowInstanceId != null">
+        flow_instance_id,
+      </if>
+      <if test="needInboundNum != null">
+        need_inbound_num,
+      </if>
+      <if test="alreadyInboundNum != null">
+        already_inbound_num,
+      </if>
+      <if test="confirmInboundNum != null">
+        confirm_inbound_num,
+      </if>
+      <if test="urgentLevel != null">
+        urgent_level,
+      </if>
+      <if test="noticeTime != null">
+        notice_time,
+      </if>
+      <if test="lastInboundTime != null">
+        last_inbound_time,
+      </if>
+      <if test="originBillTime != null">
+        origin_bill_time,
+      </if>
+      <if test="fulfilTime != null">
+        fulfil_time,
+      </if>
+      <if test="idempotentNo != null">
+        idempotent_no,
+      </if>
+      <if test="logicVersion != null">
+        logic_version,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createPerson != null">
+        create_person,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updatePerson != null">
+        update_person,
+      </if>
+      <if test="wmsType != null">
+        wms_type,
+      </if>
+      <if test="originBillId != null">
+        origin_bill_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="inboundNoticeNo != null">
+        #{inboundNoticeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fulfilId != null">
+        #{fulfilId,jdbcType=TINYINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="originBillNo != null">
+        #{originBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originBillType != null">
+        #{originBillType,jdbcType=TINYINT},
+      </if>
+      <if test="originBillChannel != null">
+        #{originBillChannel,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null">
+        #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundWarehouseId != null">
+        #{outboundWarehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="outboundWarehouseCode != null">
+        #{outboundWarehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundWarehouseName != null">
+        #{outboundWarehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createFlowStatus != null">
+        #{createFlowStatus,jdbcType=TINYINT},
+      </if>
+      <if test="flowTemplateId != null">
+        #{flowTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowTemplateName != null">
+        #{flowTemplateName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowInstanceId != null">
+        #{flowInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="needInboundNum != null">
+        #{needInboundNum,jdbcType=INTEGER},
+      </if>
+      <if test="alreadyInboundNum != null">
+        #{alreadyInboundNum,jdbcType=INTEGER},
+      </if>
+      <if test="confirmInboundNum != null">
+        #{confirmInboundNum,jdbcType=INTEGER},
+      </if>
+      <if test="urgentLevel != null">
+        #{urgentLevel,jdbcType=TINYINT},
+      </if>
+      <if test="noticeTime != null">
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastInboundTime != null">
+        #{lastInboundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originBillTime != null">
+        #{originBillTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fulfilTime != null">
+        #{fulfilTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idempotentNo != null">
+        #{idempotentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logicVersion != null">
+        #{logicVersion,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="wmsType != null">
+        #{wmsType,jdbcType=TINYINT},
+      </if>
+      <if test="originBillId != null">
+        #{originBillId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vue.demo.entity.InboundNotice">
+    update inbound_notice
+    <set>
+      <if test="inboundNoticeNo != null">
+        inbound_notice_no = #{inboundNoticeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fulfilId != null">
+        fulfil_id = #{fulfilId,jdbcType=TINYINT},
+      </if>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="originBillNo != null">
+        origin_bill_no = #{originBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originBillType != null">
+        origin_bill_type = #{originBillType,jdbcType=TINYINT},
+      </if>
+      <if test="originBillChannel != null">
+        origin_bill_channel = #{originBillChannel,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundWarehouseId != null">
+        outbound_warehouse_id = #{outboundWarehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="outboundWarehouseCode != null">
+        outbound_warehouse_code = #{outboundWarehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundWarehouseName != null">
+        outbound_warehouse_name = #{outboundWarehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createFlowStatus != null">
+        create_flow_status = #{createFlowStatus,jdbcType=TINYINT},
+      </if>
+      <if test="flowTemplateId != null">
+        flow_template_id = #{flowTemplateId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowTemplateName != null">
+        flow_template_name = #{flowTemplateName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowInstanceId != null">
+        flow_instance_id = #{flowInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="needInboundNum != null">
+        need_inbound_num = #{needInboundNum,jdbcType=INTEGER},
+      </if>
+      <if test="alreadyInboundNum != null">
+        already_inbound_num = #{alreadyInboundNum,jdbcType=INTEGER},
+      </if>
+      <if test="confirmInboundNum != null">
+        confirm_inbound_num = #{confirmInboundNum,jdbcType=INTEGER},
+      </if>
+      <if test="urgentLevel != null">
+        urgent_level = #{urgentLevel,jdbcType=TINYINT},
+      </if>
+      <if test="noticeTime != null">
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastInboundTime != null">
+        last_inbound_time = #{lastInboundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originBillTime != null">
+        origin_bill_time = #{originBillTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fulfilTime != null">
+        fulfil_time = #{fulfilTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idempotentNo != null">
+        idempotent_no = #{idempotentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logicVersion != null">
+        logic_version = #{logicVersion,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null">
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null">
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="wmsType != null">
+        wms_type = #{wmsType,jdbcType=TINYINT},
+      </if>
+      <if test="originBillId != null">
+        origin_bill_id = #{originBillId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vue.demo.entity.InboundNotice">
+    update inbound_notice
+    set inbound_notice_no = #{inboundNoticeNo,jdbcType=VARCHAR},
+      fulfil_id = #{fulfilId,jdbcType=TINYINT},
+      uuid = #{uuid,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      origin_bill_no = #{originBillNo,jdbcType=VARCHAR},
+      origin_bill_type = #{originBillType,jdbcType=TINYINT},
+      origin_bill_channel = #{originBillChannel,jdbcType=INTEGER},
+      warehouse_id = #{warehouseId,jdbcType=BIGINT},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      outbound_warehouse_id = #{outboundWarehouseId,jdbcType=BIGINT},
+      outbound_warehouse_code = #{outboundWarehouseCode,jdbcType=VARCHAR},
+      outbound_warehouse_name = #{outboundWarehouseName,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      create_flow_status = #{createFlowStatus,jdbcType=TINYINT},
+      flow_template_id = #{flowTemplateId,jdbcType=VARCHAR},
+      flow_template_name = #{flowTemplateName,jdbcType=VARCHAR},
+      flow_instance_id = #{flowInstanceId,jdbcType=VARCHAR},
+      need_inbound_num = #{needInboundNum,jdbcType=INTEGER},
+      already_inbound_num = #{alreadyInboundNum,jdbcType=INTEGER},
+      confirm_inbound_num = #{confirmInboundNum,jdbcType=INTEGER},
+      urgent_level = #{urgentLevel,jdbcType=TINYINT},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      last_inbound_time = #{lastInboundTime,jdbcType=TIMESTAMP},
+      origin_bill_time = #{originBillTime,jdbcType=TIMESTAMP},
+      fulfil_time = #{fulfilTime,jdbcType=TIMESTAMP},
+      idempotent_no = #{idempotentNo,jdbcType=VARCHAR},
+      logic_version = #{logicVersion,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      wms_type = #{wmsType,jdbcType=TINYINT},
+      origin_bill_id = #{originBillId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

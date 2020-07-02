@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+<head>
+    <title></title>
+    <script>
+        /**
+         * 向指定路径发送下载请求
+         * @param{String} url 请求路径
+         */
+        function downLoadByUrl(url){
+            var xhr = new XMLHttpRequest();
+            //GET请求,请求路径url,async(是否异步)
+            xhr.open('POST', url, true);
+            //设置请求头参数的方式,如果没有可忽略此行代码
+            // xhr.setRequestHeader("token", token);
+            //设置响应类型为 blob
+            xhr.responseType = 'blob';
+            //关键部分
+            xhr.onload = function (e) {
+                //如果请求执行成功
+                if (this.status == 200) {
+                    var blob = this.response;
+                    var filename = "test.xlsx";//如123.xls
+                    var a = document.createElement('a');
+                    blob.type = "application/octet-stream";
+                    //创键临时url对象
+                    var url = URL.createObjectURL(blob);
+                    a.href = url;
+                    a.download=filename;
+                    a.click();
+                    //释放之前创建的URL对象
+                    window.URL.revokeObjectURL(url);
+                }
+            };
+            //发送请求
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+<input type="button" onclick="downLoadByUrl('http://127.0.0.1:8080/download/')" value="下载">
+</body>
+</html>
